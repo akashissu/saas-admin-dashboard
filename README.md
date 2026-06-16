@@ -1,19 +1,11 @@
-# saas-admin-dashboard
+# SaaS Admin Dashboard
 
-## Zero-Human Multi-Agent Platform
+A fully client-side SaaS admin dashboard built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Recharts.
 
-This repository is managed by the Zero-Human multi-agent platform.
+## Features
 
-### Getting Started
-
-1. Configure your agents in the platform dashboard
-2. Create issues or feature requests
-3. Agents will automatically work on tasks
-
-### Documentation
-
-- See `docs/` for project documentation
-- See `.paperclip/` for platform configuration
-- See `memory-bank/` for agent memory and context
-
-For more information, visit the Zero-Human platform documentation.
+- **Dashboard** — 4 KPI StatCards + LineChart (revenue) + BarChart (signups)
+- **Users** — Searchable, sortable user management table with 25 mock users
+- **Settings** — Profile editing + notification toggles, persisted to localStorage
+- **Light/Dark Mode** — Toggle in the TopBar, persisted to localStorage
+- **Persistent Sidebar** — Active route highlighting across all pages
