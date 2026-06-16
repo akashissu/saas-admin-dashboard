@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'SaaS Admin Dashboard',
-  description: 'Manage your SaaS product with a powerful admin dashboard',
+  description: 'Comprehensive admin dashboard for managing your SaaS business metrics, customers, and revenue.',
+  keywords: ['dashboard', 'saas', 'admin', 'analytics', 'metrics'],
 };
 
 export default function RootLayout({
@@ -13,9 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang="en">
+      <body className="min-h-screen bg-slate-50 flex flex-col">
+        <Header />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
