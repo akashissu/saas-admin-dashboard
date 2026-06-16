@@ -1,11 +1,23 @@
 # SaaS Admin Dashboard
 
-A fully client-side SaaS admin dashboard built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Recharts.
+A production-ready SaaS admin dashboard built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Recharts v3.
 
 ## Features
 
-- **Dashboard** — 4 KPI StatCards + LineChart (revenue) + BarChart (signups)
-- **Users** — Searchable, sortable user management table with 25 mock users
-- **Settings** — Profile editing + notification toggles, persisted to localStorage
-- **Light/Dark Mode** — Toggle in the TopBar, persisted to localStorage
-- **Persistent Sidebar** — Active route highlighting across all pages
+- **Dashboard Overview** — MRR, customer count, churn rate, and ARPU at a glance
+- **Revenue Analytics** — Interactive area charts for MRR, user growth, and churn trends
+- **Customer Management** — Searchable, filterable customer table with plan and status info
+- **Recent Activity Feed** — Live-style feed of signups, payments, upgrades, and churns
+- **Settings Page** — Profile, notification preferences, billing, and danger zone
+- **Responsive Design** — Fully mobile-friendly with Tailwind CSS
+
+## Tech Stack
+
+| Technology | Version | Purpose |
+|---|---|---|
+| Next.js | 15.1.0 | App Router framework |
+| React | 18.3.x | UI library |
+| TypeScript | 5.6.x | Type safety |
+| Tailwind CSS | 3.4.x | Styling |
+| Recharts | 3.x | Data visualization |
+| clsx + tailwind-merge | latest | Class name utilities |

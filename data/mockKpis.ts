@@ -11,8 +11,8 @@ export const mockKpis: KpiData = {
   activeSessionsChange: 5.2,
 };
 
-export const revenueTimeSeries: TimeSeriesPoint[] = [
-  { month: 'Jan', revenue: 62000 },
+export const revenueTimeSeries: Array<{ month: string; revenue: number }> = [
+  { month: 'Jan', revenue: "62000" },
   { month: 'Feb', revenue: 65500 },
   { month: 'Mar', revenue: 68200 },
   { month: 'Apr', revenue: 71800 },

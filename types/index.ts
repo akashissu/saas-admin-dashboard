@@ -1,104 +1,35 @@
-export interface ThemeContextType {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
-}
-
-export interface NavItem {
+export interface Stat {
+  id: string;
   label: string;
-  href: string;
+  value: string;
+  change: string;
+  changeType: 'increase' | 'decrease' | 'neutral';
   icon: string;
+  iconBg: string;
 }
 
-export interface KpiData {
-  totalUsers: number;
-  totalUsersChange: number;
-  mrr: number;
-  mrrChange: number;
-  churnRate: number;
-  churnRateChange: number;
-  activeSessions: number;
-  activeSessionsChange: number;
-}
-
-export interface TimeSeriesPoint {
-  month: string;
-  revenue: number;
-}
-
-export interface MonthlySignupPoint {
-  month: string;
-  signups: number;
-}
-
-export interface User {
+export interface Customer {
   id: string;
   name: string;
   email: string;
-  role: string;
-  status: string;
-  joinDate: string;
+  plan: 'Enterprise' | 'Professional' | 'Starter';
+  status: 'active' | 'inactive' | 'trial' | 'churned';
+  mrr: number;
+  joinedDate: string;
 }
 
-export type SortDirection = 'asc' | 'desc';
-
-export interface SortConfig {
-  key: string;
-  direction: SortDirection;
+export interface Activity {
+  id: string;
+  type: 'signup' | 'payment' | 'upgrade' | 'churn' | 'support';
+  customerName: string;
+  description: string;
+  timestamp: string;
+  amount?: number;
 }
 
-export interface StatCardProps {
-  title: string;
-  value: string;
-  change: number;
-  icon: React.ReactNode;
-  color: 'blue' | 'green' | 'red' | 'purple';
-  invertChange?: boolean;
-}
-
-export interface ChartWidgetProps {
-  title: string;
-  description?: string;
-  data: Record<string, string | number>[];
-  dataKey: string;
-  xKey: string;
-  color: string;
-  valuePrefix?: string;
-}
-
-export interface SearchInputProps {
-  value: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
-}
-
-export interface SortableTableHeaderProps {
-  label: string;
-  sortKey: string;
-  currentSort: SortConfig;
-  onSort: (key: string) => void;
-}
-
-export interface BadgeStatusProps {
-  type: 'role' | 'status';
-  value: string;
-}
-
-export interface NotificationToggleProps {
-  label: string;
-  description?: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-}
-
-export interface AdminSettings {
-  profile: {
-    displayName: string;
-    email: string;
-    avatarUrl: string;
-  };
-  notifications: {
-    emailAlerts: boolean;
-    productUpdates: boolean;
-    securityNotifications: boolean;
-  };
-}
+/**
+ * ChartDataPoint is an index-signature compatible type used for Recharts.
+ * All chart data arrays must use this type so they are assignable to
+ * Record<string, string | number>[] as required by Recharts v3.
+ */
+export type ChartDataPoint = Record<string, string | number>;
