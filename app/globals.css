@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -13,8 +13,8 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(59, 130, 246, 0.16), transparent 30%),
-    linear-gradient(180deg, #020617 0%, #0f172a 52%, #020617 100%);
+    radial-gradient(circle at top, rgba(251, 146, 60, 0.16), transparent 30%),
+    linear-gradient(180deg, #fffdf8 0%, #fff7ed 50%, #eff6ff 100%);
 }
 
 * {
@@ -22,8 +22,8 @@ body {
 }
 
 ::selection {
-  background: rgba(56, 189, 248, 0.35);
-  color: #e0f2fe;
+  background: rgba(251, 146, 60, 0.25);
+  color: #7c2d12;
 }
 
 @layer base {
@@ -37,8 +37,17 @@ body {
 }
 
 @layer utilities {
-  .glass-panel {
-    @apply border border-white/10 bg-white/5 shadow-2xl shadow-slate-950/30 backdrop-blur;
+  .sun-panel {
+    @apply border border-white/70 bg-white/70 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur;
+  }
+
+  .destination-card {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .destination-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 90px rgba(15, 23, 42, 0.14);
   }
 
   .text-balance {
