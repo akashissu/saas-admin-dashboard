@@ -1,23 +1,19 @@
-# SaaS Admin Dashboard
+# saas-admin-dashboard
 
-A production-ready SaaS admin dashboard built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Recharts v3.
+## Zero-Human Multi-Agent Platform
 
-## Features
+This repository is managed by the Zero-Human multi-agent platform.
 
-- **Dashboard Overview** — MRR, customer count, churn rate, and ARPU at a glance
-- **Revenue Analytics** — Interactive area charts for MRR, user growth, and churn trends
-- **Customer Management** — Searchable, filterable customer table with plan and status info
-- **Recent Activity Feed** — Live-style feed of signups, payments, upgrades, and churns
-- **Settings Page** — Profile, notification preferences, billing, and danger zone
-- **Responsive Design** — Fully mobile-friendly with Tailwind CSS
+### Getting Started
 
-## Tech Stack
+1. Configure your agents in the platform dashboard
+2. Create issues or feature requests
+3. Agents will automatically work on tasks
 
-| Technology | Version | Purpose |
-|---|---|---|
-| Next.js | 15.1.0 | App Router framework |
-| React | 18.3.x | UI library |
-| TypeScript | 5.6.x | Type safety |
-| Tailwind CSS | 3.4.x | Styling |
-| Recharts | 3.x | Data visualization |
-| clsx + tailwind-merge | latest | Class name utilities |
+### Documentation
+
+- See `docs/` for project documentation
+- See `.paperclip/` for platform configuration
+- See `memory-bank/` for agent memory and context
+
+For more information, visit the Zero-Human platform documentation.
