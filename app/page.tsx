@@ -1,86 +1,112 @@
 import Link from 'next/link';
-import { StatsCard } from '@/components/StatsCard';
-import { overviewStats } from '@/lib/data';
+import { MovieCard } from '@/components/MovieCard';
+import { bookingSteps, featuredMovie, movies } from '@/lib/data';
 
 export default function HomePage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-slate-900 sm:text-5xl mb-4">
-          Welcome to <span className="text-brand-600">SaaS Dashboard</span>
-        </h1>
-        <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">
-          Monitor your business metrics, track customer growth, and analyze revenue trends — all in one place.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/dashboard"
-            className="inline-flex items-center justify-center px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors"
-          >
-            Go to Dashboard
-          </Link>
-          <Link
-            href="/customers"
-            className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-100 transition-colors"
-          >
-            View Customers
-          </Link>
-        </div>
-      </div>
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-20 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <section className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <p className="text-sm font-medium uppercase tracking-[0.45em] text-sky-300">React movie booking app</p>
+          <h1 className="mt-5 max-w-3xl text-balance text-5xl font-semibold leading-tight text-white sm:text-6xl">
+            Book the best seats for tonight&apos;s must-watch movies.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            Browse fresh releases, compare showtimes across premium theaters, and reserve your favorite seats from a
+            sleek mobile-first experience.
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href={`/#now-showing`}
+              className="inline-flex items-center justify-center rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-sky-300"
+            >
+              Browse movies
+            </Link>
+            <Link
+              href={`/movies/${featuredMovie.id}`}
+              className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+            >
+              Open featured movie
+            </Link>
+          </div>
 
-      {/* Overview Stats */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold text-slate-800 mb-6">Business Overview</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {overviewStats.map((stat) => (
-            <StatsCard key={stat.id} stat={stat} />
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {[
+              { label: 'Now showing', value: `${movies.length} movies` },
+              { label: 'Partner theaters', value: '4 venues' },
+              { label: 'Formats', value: 'IMAX · Dolby · 4DX' },
+            ].map((item) => (
+              <div key={item.label} className="glass-panel rounded-2xl p-4">
+                <p className="text-sm text-slate-400">{item.label}</p>
+                <p className="mt-2 text-xl font-semibold text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={`glass-panel overflow-hidden rounded-[2rem] border-white/10 bg-gradient-to-br ${featuredMovie.backdropGradient}`}>
+          <div className="p-8 sm:p-10">
+            <p className="text-xs uppercase tracking-[0.4em] text-sky-100/80">Featured tonight</p>
+            <div className="mt-6 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-3xl font-semibold text-white">{featuredMovie.title}</h2>
+                <p className="mt-2 text-sm text-sky-100/80">
+                  {featuredMovie.genre} · {featuredMovie.runtime} · ★ {featuredMovie.rating.toFixed(1)}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/20 bg-slate-950/20 px-4 py-3 text-center text-white">
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-200">Poster</p>
+                <p className="mt-2 text-2xl font-black">{featuredMovie.posterLabel}</p>
+              </div>
+            </div>
+            <p className="mt-6 max-w-xl text-base leading-7 text-slate-100/85">{featuredMovie.synopsis}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {featuredMovie.showtimes.map((showtime) => (
+                <span key={showtime.id} className="rounded-full border border-white/15 bg-slate-950/25 px-4 py-2 text-sm text-white">
+                  {showtime.dateLabel} · {showtime.time} · {showtime.format}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="now-showing" className="space-y-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Now showing</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white">Find a movie worth leaving the couch for</h2>
+          </div>
+          <p className="max-w-xl text-sm leading-6 text-slate-400">
+            Every title includes quick details, starting ticket prices, and a direct path into seat selection.
+          </p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-4">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Feature Highlights */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-          </div>
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Revenue Analytics</h3>
-          <p className="text-slate-600">Track MRR, ARR, and revenue growth with interactive charts and detailed breakdowns.</p>
+      <section id="how-it-works" className="space-y-8">
+        <div>
+          <p className="text-xs uppercase tracking-[0.35em] text-slate-400">How it works</p>
+          <h2 className="mt-3 text-3xl font-semibold text-white">A clear path from discovery to confirmation</h2>
         </div>
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </div>
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Customer Management</h3>
-          <p className="text-slate-600">Manage your customer base, track churn, and monitor customer lifetime value.</p>
-        </div>
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-            <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Real-time Insights</h3>
-          <p className="text-slate-600">Get instant insights into your business performance with live data updates and alerts.</p>
-        </div>
-      </div>
 
-      {/* CTA Section */}
-      <div className="bg-brand-600 rounded-2xl p-8 text-center text-white">
-        <h2 className="text-2xl font-bold mb-3">Ready to dive in?</h2>
-        <p className="text-brand-100 mb-6">Explore your full dashboard to see all metrics and analytics.</p>
-        <Link
-          href="/dashboard"
-          className="inline-flex items-center justify-center px-6 py-3 bg-white text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors"
-        >
-          Open Dashboard →
-        </Link>
-      </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {bookingSteps.map((step, index) => (
+            <div key={step.title} className="glass-panel rounded-3xl p-6">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sky-400 text-lg font-semibold text-slate-950">
+                {index + 1}
+              </span>
+              <h3 className="mt-5 text-xl font-semibold text-white">{step.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

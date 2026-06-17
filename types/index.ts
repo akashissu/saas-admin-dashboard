@@ -1,35 +1,35 @@
-export interface Stat {
+export interface MovieShowtime {
   id: string;
-  label: string;
-  value: string;
-  change: string;
-  changeType: 'increase' | 'decrease' | 'neutral';
-  icon: string;
-  iconBg: string;
+  theater: string;
+  auditorium: string;
+  dateLabel: string;
+  time: string;
+  format: string;
+  price: number;
+  soldSeats: string[];
+  perks: string[];
 }
 
-export interface Customer {
+export interface Movie {
   id: string;
-  name: string;
-  email: string;
-  plan: 'Enterprise' | 'Professional' | 'Starter';
-  status: 'active' | 'inactive' | 'trial' | 'churned';
-  mrr: number;
-  joinedDate: string;
+  title: string;
+  genre: string;
+  rating: number;
+  runtime: string;
+  releaseYear: number;
+  posterLabel: string;
+  posterGradient: string;
+  backdropGradient: string;
+  synopsis: string;
+  director: string;
+  cast: string[];
+  languages: string[];
+  showtimes: MovieShowtime[];
 }
 
-export interface Activity {
+export interface Seat {
   id: string;
-  type: 'signup' | 'payment' | 'upgrade' | 'churn' | 'support';
-  customerName: string;
-  description: string;
-  timestamp: string;
-  amount?: number;
+  row: string;
+  number: number;
+  status: 'available' | 'sold';
 }
-
-/**
- * ChartDataPoint is an index-signature compatible type used for Recharts.
- * All chart data arrays must use this type so they are assignable to
- * Record<string, string | number>[] as required by Recharts v3.
- */
-export type ChartDataPoint = Record<string, string | number>;

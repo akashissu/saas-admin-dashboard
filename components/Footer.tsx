@@ -2,45 +2,23 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-slate-200 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 bg-brand-600 rounded-lg flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <span className="font-bold text-slate-900">SaaS Dashboard</span>
-            </div>
-            <p className="text-sm text-slate-500 max-w-xs">
-              The all-in-one analytics and management platform for growing SaaS businesses.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-slate-800 mb-3">Product</h4>
-            <ul className="space-y-2">
-              <li><Link href="/dashboard" className="text-sm text-slate-500 hover:text-slate-700">Dashboard</Link></li>
-              <li><Link href="/analytics" className="text-sm text-slate-500 hover:text-slate-700">Analytics</Link></li>
-              <li><Link href="/customers" className="text-sm text-slate-500 hover:text-slate-700">Customers</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-slate-800 mb-3">Account</h4>
-            <ul className="space-y-2">
-              <li><Link href="/settings" className="text-sm text-slate-500 hover:text-slate-700">Settings</Link></li>
-              <li><Link href="#" className="text-sm text-slate-500 hover:text-slate-700">Support</Link></li>
-              <li><Link href="#" className="text-sm text-slate-500 hover:text-slate-700">Documentation</Link></li>
-            </ul>
-          </div>
+    <footer className="relative z-10 border-t border-white/10 bg-slate-950/80">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div>
+          <p className="text-sm font-semibold text-white">CineReserve</p>
+          <p className="mt-2 max-w-md text-sm text-slate-400">
+            Discover films, compare premium theaters, and secure the best seats with a fast mobile-first booking flow.
+          </p>
         </div>
-        <div className="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-slate-400">© 2024 SaaS Dashboard. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="#" className="text-xs text-slate-400 hover:text-slate-600">Privacy Policy</Link>
-            <Link href="#" className="text-xs text-slate-400 hover:text-slate-600">Terms of Service</Link>
-          </div>
+
+        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+          <Link href="/" className="hover:text-white">
+            Browse movies
+          </Link>
+          <Link href="/confirmation" className="hover:text-white">
+            Confirmation view
+          </Link>
+          <span>© 2026 CineReserve</span>
         </div>
       </div>
     </footer>
