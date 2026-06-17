@@ -1,5 +1,21 @@
 # Changelog
 
+## PAP-435 — Build Failed
+
+### Fixed
+- documented the remediation for the Vercel build/security blocker tied to the vulnerable Next.js 15.1.0 release
+- recorded the framework upgrade already implemented in `feat(pap-435): upgrade next to patched release`
+- confirmed the app now builds successfully on **Next.js 15.5.19**
+
+### Build and release notes
+- `npm install` refreshes dependencies for the patched framework version
+- `npm run build` completes successfully and generates the application routes for deployment
+- the prior Vercel warning about the vulnerable Next.js version is addressed by the upgraded release line
+
+### Handoff
+- implementation commit detected: `feat(pap-435): upgrade next to patched release`
+- documentation updated for automated PR preparation and deployment review
+
 ## PAP-434 — Design a travel destination landing page using HTML and CSS
 
 ### Added

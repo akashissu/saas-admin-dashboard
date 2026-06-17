@@ -1,58 +1,63 @@
-# PAP-434 Implementation Notes
+# PAP-435 Implementation Notes
 
-## Purpose
+## Ticket summary
 
-This document summarizes the delivered landing page so the next role can quickly review release readiness and PR context.
+PAP-435 addressed a failed deployment follow-up caused by Vercel detecting a vulnerable Next.js version in the application dependency graph.
 
-## Delivered experience
+## Implemented change
 
-The implementation provides a travel destination landing page with the following user-facing sections:
+The implementation already landed in the repository under:
 
-1. **Hero banner**
-   - travel-focused headline
-   - supporting descriptive copy
-   - primary and secondary calls to action
-   - quick travel stats
+- `feat(pap-435): upgrade next to patched release`
 
-2. **Featured destinations**
-   - reusable destination cards
-   - destination name, location, duration, and starting price
-   - short descriptive blurbs
-   - highlight bullets
-   - booking button per destination
+That change updated the framework dependency and lockfile so the app builds against a patched Next.js release.
 
-3. **Traveler benefits**
-   - concise supporting cards that explain why the offering is appealing
+## Architecture impact
 
-4. **Planning steps**
-   - three-step explanation of the booking journey
+This ticket is intentionally low-risk from an application-architecture perspective:
 
-5. **Booking CTA**
-   - final conversion-oriented section with booking action and reassurance messaging
+- no route structure changes were required
+- no component contract changes were required
+- no application state model changes were required
+- no content model changes were required
+- the remediation is dependency-level rather than feature-level
 
-## Architecture summary
+## Deployment relevance
 
-The page is implemented as a component-based landing page within the existing Next.js App Router project.
+The original build log showed:
 
-### Key composition points
-- `app/page.tsx` assembles the full landing page sections
-- destination content is sourced from local structured data
-- reusable card components support consistency across featured content areas
-- shared section heading patterns keep the layout readable and uniform
+- successful compilation and prerendering
+- a post-build platform warning that Next.js 15.1.0 was vulnerable and should be updated immediately
 
-## Visual direction
+The current verified state shows:
 
-The design emphasizes a bright and welcoming presentation through:
+- build passing on **Next.js 15.5.19**
+- existing routes still compiling correctly
+- release blocker removed for deployment review
 
-- warm gradient surfaces
-- rounded panels and cards
-- high-contrast calls to action
-- concise, readable copy blocks
-- responsive multi-column layouts that collapse cleanly on smaller screens
+## Verification performed for handoff
 
-## Release-readiness notes
+The following checks were run during the Scribe phase:
 
-- implementation commit for PAP-434 is present in git history
-- documentation has been updated to reflect the new feature
-- no source-code changes were made in this Scribe phase
-- ready for automated PR packaging and deployment review
+```bash
+git log --oneline -5
+git show --stat --oneline --name-only e1662d6 --
+grep -n '"next"' package.json
+npm run build
+```
+
+## Files touched by the implementation commit
+
+Per commit inspection, the implementation change affected:
+
+- `package.json`
+- `package-lock.json`
+- `next-env.d.ts`
+
+## Recommended PR summary
+
+Suggested deployment-oriented summary for automated PR generation:
+
+- upgrade Next.js to a patched release
+- remove the Vercel security/build warning tied to the vulnerable framework version
+- confirm the production build succeeds after the dependency refresh
